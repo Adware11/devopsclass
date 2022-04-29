@@ -49,11 +49,12 @@ systemctl enable tomcat
 git clone https://github.com/dogitteamuserzero/devopsclass.git
 cd devopsclass
 mvn install
+
 systemctl stop tomcat
-sleep 60
 rm -rf /usr/local/tomcat8/webapps/ROOT*
 cp target/vprofile-v2.war /usr/local/tomcat8/webapps/ROOT.war
+sudo chown tomcat.tomcat /usr/local/tomcat8/webapps -R
 systemctl start tomcat
-sleep 120
+
 cp /vagrant/application.properties /usr/local/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties
 systemctl restart tomcat

@@ -1,6 +1,10 @@
 Vagrant.configure("2") do |config|
   config.hostmanager.enabled = true 
   config.hostmanager.manage_host = true
+
+  config.vbguest.no_remote = true
+
+  config.vm.boot_timeout = 900
   
 ### DB vm  ####
   config.vm.define "db01" do |db01|
@@ -32,6 +36,7 @@ Vagrant.configure("2") do |config|
     app01.vm.box = "geerlingguy/centos7"
     app01.vm.hostname = "app01"
     app01.vm.network "private_network", ip: "192.168.33.12"
+    app01.vm.network :forwarded_port, guest: 9418, host: 9418
     app01.vm.provision "shell", path: "tomcat.sh"  
     app01.vm.provider "virtualbox" do |vb|
      vb.memory = "1024"

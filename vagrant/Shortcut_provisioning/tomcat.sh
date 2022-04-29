@@ -41,7 +41,3 @@ Restart=always
 WantedBy=multi-user.target
 
 EOT
-
-systemctl daemon-reload
-systemctl start tomcat
-systemctl enable tomcat
