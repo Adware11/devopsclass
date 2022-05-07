@@ -42,6 +42,7 @@ WantedBy=multi-user.target
 
 EOT
 
+
 yum update -y
 git clone https://github.com/dogitteamuserzero/devopsclass.git
 mvn install
