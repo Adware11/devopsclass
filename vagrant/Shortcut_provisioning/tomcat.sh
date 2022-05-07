@@ -41,3 +41,14 @@ Restart=always
 WantedBy=multi-user.target
 
 EOT
+
+yum update -y
+git clone https://github.com/dogitteamuserzero/devopsclass.git
+mvn install
+
+systemctl stop tomcat
+sudo rm -rf /usr/local/tomcat8/webapps/ROOT*
+cp target/vprofile-v2.war /usr/local/tomcat8/webapps/ROOT.war
+sudo chown tomcat.tomcat /usr/local/tomcat8/webapps -R
+
+systemctl start tomcat
